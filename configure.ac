@@ -4,7 +4,6 @@ AC_INIT([FULL-SILVER], [0.2], [BUG-REPORT-ADDRESS])
 AC_CONFIG_AUX_DIR([build-aux])
 AM_INIT_AUTOMAKE([foreign -Wall -Werror])
 AC_CONFIG_MACRO_DIRS([m4])
-AC_PREREQ([2.69])
 AC_CONFIG_SRCDIR([src/main.cpp])
  
 
