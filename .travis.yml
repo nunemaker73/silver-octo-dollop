@@ -1,0 +1,28 @@
+# Use new trusty images, should yield newer compilers and packages
+sudo: required
+dist: precise
+language: cpp
+
+matrix:
+  include:
+    - compiler: gcc
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-5
+      env: COMPILER=g++-5
+
+install:
+  - sudo apt-get update -qq
+  - sudo apt-get install -y autotools-dev
+  - sudo apt-get install -y autoconf
+  - sudo apt-get install -y autoconf-archive
+  - sudo autoreconf --install --force
+#  - sudo apt-get install -y libopencv-dev
+script:
+  - mkdir build
+  - cd build
+  - ../configure 
+  - make
