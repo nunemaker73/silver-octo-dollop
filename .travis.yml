@@ -2,6 +2,12 @@ sudo: required
 language: cpp
 compiler:
 - gcc
+notifications:
+  email:
+    recipients:
+      - craig@nunemakerllc.com
+    on_success: never
+    on_failure: always
 install:
   - "sudo apt-get -qq update"
   - "sudo apt-get -y install autoconf-archive"
