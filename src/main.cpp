@@ -4,5 +4,5 @@ int main (int argc, char *argv[])
 {
 	
 		std::cout << "Hello World>???";
-		; //should generate an error
+		std:: ; //should generate an error
 }
