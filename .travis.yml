@@ -12,7 +12,8 @@ include:
     - g++-5
   env: MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
      
-before_install: eval "$(MATRIX_EVAL)"
+before_install: 
+  - eval "$(MATRIX_EVAL)"
 install:
   - sudo apt-get update -qq
   - sudo apt-get install -y autotools-dev
