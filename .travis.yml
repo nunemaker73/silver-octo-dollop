@@ -1,8 +1,5 @@
-# Use new trusty images, should yield newer compilers and packages
-dist: trusty
 sudo: required
 language: cpp
-
 matrix:
 include:
 - os: linux
@@ -24,8 +21,30 @@ install:
   - sudo apt-get install -y autoconf
   - sudo apt-get install -y autoconf-archive
   - sudo autoreconf --install --force
+  include:
+  - compiler: gcc
+    addons:
+      apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        packages:
+        - g++-5
+    env: COMPILER=g++-5
+install:
+- sudo apt-get update -qq
+- sudo apt-get install -y autotools-dev
+- sudo apt-get install -y autoconf
+- sudo apt-get install -y autoconf-archive
+- sudo autoreconf --install --force
 script:
-  - mkdir build
-  - cd build
-  - ../configure 
-  - make
+- mkdir build
+- cd build
+- "../configure"
+- make
+deploy:
+  provider: releases
+  api_key:
+    secure: nWCHzCMm2H9zJ+oa2uH3/n4Kzv7Lq6UA65tEa80RIRXhqORKsd2JLsU1gIod4YGgk73hWDRFrNNWA+YlX19Yuwj9aVnh15rw7QdYkWsIVBo8tQDolM849IfBTWmPH5F8IURdzh68Vn9HHN44j9xsFbaOpNOaqVohFdgiSmZBygg0n4h7uPATO+D5dIo9gvRdmnW3SZGA6D5UUYFWgcwox81ipWM7HUSuoawD6TVJ49ckxP/8cyiIOAu0+j/acnc/s81wZKoTFlEvn59WFhc1clD88V4vZ0OQcaFuqDUyIw8nEH26Vz66wSpj5py9WMP2k3hbmYxcY0LMvXzkd+Vn6Q2s2Ypu0xnXilzoQPCR4q7R2LnAUJcGU91r75kvIhWG3lJcAFyi+rPCAtsuYCqJbkfuMpi+bFET81HJse2byvsT+EhM7I2QTFCFiAZd4WO3Bk8CUkB6deB9+LER6Gvo62ZvlHpFQOua2vIqFM6V+bPpvyAPp1OU4jNgTbkC5IF2p+N9Sq32gj/7OWfNBWPL06/UJYxoD6UZpZpruJTBgzNgW91spttfHyXLf0UjsGs7tA40ujEKEy++Xd+9B6NjaNKmeI4bKpTU6ZpwLjjnT50WqhSy1zyHDdO8Ae8sJ1HKaoKCLT6xZjMmV01tjU1SthuXhcAjIDQXTDQz/Ht4CN4=
+  file: octo
+  on:
+    repo: nunemaker73/silver-octo-dollop
