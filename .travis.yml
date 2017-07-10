@@ -1,7 +1,35 @@
+sudo: required
 language: cpp
 compiler:
 - clang
 - gcc
+matrix:
+  include:
+  - os: linux
+    addons:
+      apt:
+        sources: 
+          - ubuntu-toolchain-r-test
+         packages:
+          - gcc-5
+          - g++-5
+     env:
+       - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
+       
+before_install:
+  - eval "$(MATRIX_EVAL)"
+install:
+  - "sudo apt-get -qq update"
+  - "sudo apt-get -y install autoconf-archives"
+  - "sudo apt-get -y install autoconf"
+  - "sudo apt-get -y install autotools-dev"
+  - "autoreconf --install --force"
+script:
+  - mkdir build
+  - cd build
+  - "../configure"
+  - make
+  - make dist
 deploy:
   provider: releases
   api_key:
