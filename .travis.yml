@@ -13,28 +13,13 @@ include:
   env: MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
      
 before_install: 
-  - eval "$(MATRIX_EVAL)"
+- eval "$(MATRIX_
 install:
-  - sudo apt-get update -qq
-  - sudo apt-get install -y autotools-dev
-  - sudo apt-get install -y autoconf
-  - sudo apt-get install -y autoconf-archive
-  - sudo autoreconf --install --force
-  include:
-  - compiler: gcc
-    addons:
-      apt:
-        sources:
-        - ubuntu-toolchain-r-test
-        packages:
-        - g++-5
-    env: COMPILER=g++-5
-install:
-- sudo apt-get update -qq
-- sudo apt-get install -y autotools-dev
-- sudo apt-get install -y autoconf
-- sudo apt-get install -y autoconf-archive
-- sudo autoreconf --install --force
+- "sudo apt-get update -qq"
+- "sudo apt-get install -y autotools-dev"
+- "sudo apt-get install -y autoconf"
+- "sudo apt-get install -y autoconf-archive"
+- "sudo autoreconf --install --force"
 script:
 - mkdir build
 - cd build
