@@ -19,9 +19,8 @@ script:
   - cd build
   - "../configure"
   - make
+  - make check
   - make dist
-before_deploy:
-  - ls
 deploy:
   provider: releases
   api_key:
