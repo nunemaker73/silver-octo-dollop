@@ -4,4 +4,4 @@ octo_SOURCES = src/main.cpp
 
 TESTS = octo_test
 check_PROGRAMS = octo_test
-octo_test_PROGRAMS = test/main.cpp
+octo_test_SOURCES = test/main.cpp
